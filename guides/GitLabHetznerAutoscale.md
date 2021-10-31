@@ -31,18 +31,19 @@ gitlab-runner register \
   --executor docker \
   --docker-image docker:dind \
   --paused
-  ```
+```
 
 ## Runner Setup
 
 Create a Folder for the configs, in this example it is called `hetzner_config`, copy the Runner config file into the created folder. Edit the config to the following (if not already done in the registration step). Edit the config so it fits your purpose. 
 
-  ```conf
+```
   [[runners]]
   ...
   executor = "docker+machine"
-  ```
-  ```conf
+```
+
+```
   [runners.machine]
     IdleCount = 0
     IdleTime = 600
@@ -58,7 +59,7 @@ Create a Folder for the configs, in this example it is called `hetzner_config`, 
       Timezone = ""
       IdleCount = 0
       IdleTime = 21600
-  ```
+```
   In my Example here, it is set so that no Machines are ready for use, in this case, if a Job comes in a machine needs to be created first, which isn't that bad when you're not depending on a few minutes. 
 
   `IdleCount=0` -> Sets the Idle Count, how many Machines should always be available. As already mentioned if set to zero, a Machine needs to be created first.
@@ -117,7 +118,7 @@ hetzner-runner_1  | [session_server].listen_address not defined, session endpoi
 Create a Job and check if the runner works, if everything works correct the Output should look like this: 
 
 ```
-hetzner-runner_1  | Checking for jobs... received                       job=724 repo_url=https://gitlab.gamerparty.eu/kgaab/kernel_compiler.git runner=L7mc7so7
+hetzner-runner_1  | Checking for jobs... received                       job=724 repo_url= runner=L7mc7so7
 hetzner-runner_1  | Running pre-create checks...                        driver=hetzner name=runner-l7mc7so7-1635714803-ed01fdb8 operation=create
 hetzner-runner_1  | Creating machine...                                 driver=hetzner name=runner-l7mc7so7-1635714803-ed01fdb8 operation=create
 hetzner-runner_1  | (runner-l7mc7so7-1635714803-ed01fdb8) Creating SSH key...  driver=hetzner name=runner-l7mc7so7-1635714803-ed01fdb8 operation=create
